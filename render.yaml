@@ -1,5 +1,5 @@
 services:
-  - name: mock-ecommerce
+  - name: mock-payment
     type: web
     plan: free
     branch: main
