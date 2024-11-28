@@ -10,7 +10,7 @@ This is a simple mock payment server that simulates processing payments with bas
 
 1. Clone the repository:
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/WM-SahilShah/mock-payment.git
 cd mock-payment-server
 ```
 
