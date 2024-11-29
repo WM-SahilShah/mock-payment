@@ -1,0 +1,19 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# Logs
+*.log
+
+# IDE or editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# macOS system files
+.DS_Store
