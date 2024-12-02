@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```bash
 uvicorn main:app --reload
 ```
-The application will be available at `http://127.0.0.1:8000` (or the port you specify in the code).
+The application will be available at `http://127.0.0.1:8000` if locally run or on `https://mock-payment.onrender.com`.
 
 ## API Endpoints:
 
@@ -44,7 +44,7 @@ This endpoint accepts a POST request to process a payment. It requires basic aut
   ```json
   {
     "message": "Payment of 20.00 processed successfully for <username>.",
-    "updated_account_balance": 80.00
+    "updatedAccountBalance": 80.00
   }
   ```
 - If the account balance is insufficient:
@@ -79,24 +79,24 @@ You can pass the credentials as part of the request using `curl`, or any HTTP cl
 
 ```bash
 curl -X 'POST' \
-  'http://127.0.0.1:8000/payment' \
+  'https://mock-payment.onrender.com/payment' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -u test_username:test_password \
   -d '{
-  "product_price": 20.00,
-  "account_balance": 100.00
+  "productPrice": 20.00,
+  "accountBalance": 100.00
 }'
 ```
 or
 ```bash
 curl -X 'POST' \
-  'http://127.0.0.1:8000/payment' \
+  'https://mock-payment.onrender.com/payment' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Basic dGVzdF91c2VybmFtZTp0ZXN0X3Bhc3N3b3Jk' \
   -d '{
-  "product_price": 20.00,
-  "account_balance": 100.00
+  "productPrice": 20.00,
+  "accountBalance": 100.00
 }'
 ```
