@@ -28,12 +28,21 @@ class PaymentRequest(BaseModel):
             raise ValueError("Value must be non-negative.")
         return round(value, 2)
 
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBasicCredentials
+
 def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)) -> str:
     correct_password = fake_db.get(credentials.username)
+    # Check if the username exists and if the password matches
     if correct_password is None or correct_password != credentials.password:
         logger.warning(f"Failed login attempt - username: {credentials.username}, password: {credentials.password}")
+        # Prepare the error message with the incorrect and correct credentials
+        error_message = (
+            f"You used incorrect credentials: {credentials.username}, {credentials.password}. "
+            f"You should have used: {credentials.username}, {correct_password if correct_password is not None else 'unknown'}."
+        )
         raise HTTPException(
-            status_code=401, detail="Invalid credentials"
+            status_code=401, detail=error_message
         )
     logger.info(f"User '{credentials.username}' authenticated successfully.")
     return credentials.username
